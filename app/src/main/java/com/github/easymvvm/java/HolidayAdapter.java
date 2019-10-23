@@ -1,15 +1,13 @@
 package com.github.easymvvm.java;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.github.easymvvm.R;
-
+import com.github.easymvvm.databinding.ItemHolidayJavaBinding;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -32,30 +30,28 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.MyViewHo
         return holidayList != null ? holidayList.size() : 0;
     }
 
+    @NotNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_holiday, parent, false);
+    public MyViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        ItemHolidayJavaBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.item_holiday_java, parent, false);
 
-        return new MyViewHolder(v);
+        return new MyViewHolder(binding);
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
+        private ItemHolidayJavaBinding binding;
 
-        private TextView tvDate, tvName;
-
-        public MyViewHolder(View convertView) {
-            super(convertView);
-            tvDate = convertView.findViewById(R.id.tv_date);
-            tvName = convertView.findViewById(R.id.tv_name);
+        MyViewHolder(ItemHolidayJavaBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
-        holder.tvDate.setText(holidayList.get(position).getDate());
-        holder.tvName.setText(holidayList.get(position).getName());
-
+        holder.binding.setModel( holidayList.get(position) );
     }
 
 }
