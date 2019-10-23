@@ -1,6 +1,7 @@
 package com.github.easymvvm.java;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HolidayActivity extends AppCompatActivity {
 
+    final String TAG = getClass().getSimpleName();
     ProgressBar progressBar;
     HolidayAdapter adapter;
 
@@ -27,13 +29,18 @@ public class HolidayActivity extends AppCompatActivity {
         initUI();
 
         if(MyApplication.getInstance().isNetworkAvailable()) {
+            progressBar.setVisibility(View.VISIBLE);
 
             HolidayViewModel holidayViewModel = new HolidayViewModel();
             holidayViewModel.getHolidays().observe(this, new Observer<List<HolidayModel>>() {
                 @Override
                 public void onChanged(List<HolidayModel> currencyPojos) {
-                    progressBar.setVisibility(View.GONE);
-                    adapter.addHolidayList(currencyPojos);
+                    if(currencyPojos!=null && !currencyPojos.isEmpty()) {
+                        Log.e(TAG, "observe onChanged()="+currencyPojos.size() );
+                        progressBar.setVisibility(View.GONE);
+                        adapter.addHolidayList(currencyPojos);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             });
 
@@ -43,12 +50,12 @@ public class HolidayActivity extends AppCompatActivity {
     }
 
     void initUI(){
-        RecyclerView rvCurrencyList = findViewById(R.id.rvCurrencyList);
-        rvCurrencyList.setHasFixedSize(true);
-        rvCurrencyList.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView rvHolidayList = findViewById(R.id.rvHolidayList);
+        rvHolidayList.setHasFixedSize(true);
+        rvHolidayList.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new HolidayAdapter();
-        rvCurrencyList.setAdapter(adapter);
+        rvHolidayList.setAdapter(adapter);
 
         progressBar = findViewById(R.id.progressBar);
     }

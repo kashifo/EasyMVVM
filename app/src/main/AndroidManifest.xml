@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.github.easymvvm">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".commons.MyApplication"
@@ -14,22 +14,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            >
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".java.HolidayActivity"
+        <activity
+            android:name=".java.HolidayActivity"
             android:screenOrientation="portrait"
+            android:label="@string/holiday_activity_java"
             />
 
-    </application>
+        <activity
+            android:name=".kotlin.HolidayActivityKotlin"
+            android:screenOrientation="portrait"
+            android:label="@string/holiday_activity_kotlin"
+            />
 
+
+    </application>
 
 </manifest>

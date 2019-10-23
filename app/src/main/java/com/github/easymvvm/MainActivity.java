@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.github.easymvvm.java.HolidayActivity;
+import com.github.easymvvm.kotlin.HolidayActivityKotlin;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HolidayActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn_kotlin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HolidayActivityKotlin.class));
             }
         });
     }

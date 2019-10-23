@@ -25,7 +25,6 @@ public class HolidayAdapter extends RecyclerView.Adapter<HolidayAdapter.MyViewHo
 
     public void addHolidayList(List<HolidayModel> currencyList) {
         this.holidayList = currencyList;
-        notifyDataSetChanged();
     }
 
     @Override

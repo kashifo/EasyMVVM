@@ -1,6 +1,7 @@
 package com.github.easymvvm.commons;
 
 import com.github.easymvvm.java.HolidayModel;
+import com.github.easymvvm.kotlin.HolidayModelKotlin;
 
 import java.util.List;
 
@@ -14,5 +15,8 @@ public interface ApiInterface {
 
     @GET("PublicHolidays/2019/us")
     Call<List<HolidayModel>> getHolidays();
+
+    @GET("PublicHolidays/2019/us")
+    Call<List<HolidayModelKotlin>> getHolidaysKotlin();
 
 }

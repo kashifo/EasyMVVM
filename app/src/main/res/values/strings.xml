@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Easy MVVM</string>
+    <string name="holiday_activity_java">HolidayActivityJava</string>
+    <string name="holiday_activity_kotlin">HolidayActivityKotlin</string>
 </resources>
