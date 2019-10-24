@@ -27,14 +27,14 @@
 
         <activity
             android:name=".java.HolidayActivity"
-            android:screenOrientation="portrait"
             android:label="@string/holiday_activity_java"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             />
 
         <activity
             android:name=".kotlin.HolidayActivityKotlin"
-            android:screenOrientation="portrait"
             android:label="@string/holiday_activity_kotlin"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             />
 
 

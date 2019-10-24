@@ -1,6 +1,7 @@
 package com.github.easymvvm.kotlin
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 /**
@@ -9,13 +10,17 @@ import androidx.lifecycle.ViewModel
 class HolidayViewModelKotlin() : ViewModel() {
 
     var holidayRepoKotlin: HolidayRepoKotlin? = null
+    var mutableLiveData: MutableLiveData<List<HolidayModelKotlin>>? = null
 
     init {
         holidayRepoKotlin = HolidayRepoKotlin()
     }
 
-    fun getHolidays(): LiveData<ArrayList<HolidayModelKotlin>> {
-        return holidayRepoKotlin!!.fetchHolidays()
+    fun getHolidays(): LiveData<List<HolidayModelKotlin>> {
+        if (mutableLiveData == null) {
+            mutableLiveData = holidayRepoKotlin!!.fetchHolidays()
+        }
+        return mutableLiveData!!
     }
 
 }

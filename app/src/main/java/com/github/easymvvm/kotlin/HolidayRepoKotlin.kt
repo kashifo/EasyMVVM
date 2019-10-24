@@ -14,10 +14,10 @@ import retrofit2.Response
 class HolidayRepoKotlin {
 
     val TAG = javaClass.simpleName
-    var list: ArrayList<HolidayModelKotlin> = ArrayList()
-    var mutableList: MutableLiveData<ArrayList<HolidayModelKotlin>> = MutableLiveData()
 
-    fun fetchHolidays(): MutableLiveData<ArrayList<HolidayModelKotlin>>{
+    fun fetchHolidays(): MutableLiveData<List<HolidayModelKotlin>>{
+        var mutableList: MutableLiveData<List<HolidayModelKotlin>> = MutableLiveData()
+
         val apiInterface = MyApplication.getRetrofitClient().create(ApiInterface::class.java)
 
         apiInterface.getHolidaysKotlin().enqueue(object: Callback<List<HolidayModelKotlin>>{
@@ -29,8 +29,7 @@ class HolidayRepoKotlin {
                     Log.e(TAG, "onResponse response.size="+response.body()?.size )
 
                     if(response.body()!=null && response.body()?.size!!>0 ) {
-                        list.addAll(response.body()!!)
-                        mutableList.value = list
+                        mutableList.value = response.body()!!
                     }
                 }
             }

@@ -1,8 +1,8 @@
 package com.github.easymvvm.java;
 
 import java.util.List;
-
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -11,13 +11,17 @@ import androidx.lifecycle.ViewModel;
 public class HolidayViewModel extends ViewModel {
 
     private HolidayRepo holidayRepo;
+    private MutableLiveData<List<HolidayModel>> mutableLiveData;
 
     public HolidayViewModel(){
         holidayRepo = new HolidayRepo();
     }
 
     public LiveData<List<HolidayModel>> getHolidays() {
-        return holidayRepo.requestHolidays();
+        if(mutableLiveData==null){
+            mutableLiveData = holidayRepo.requestHolidays();
+        }
+        return mutableLiveData;
     }
 
 }

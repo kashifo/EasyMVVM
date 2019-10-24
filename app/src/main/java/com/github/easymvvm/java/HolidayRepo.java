@@ -18,9 +18,9 @@ import retrofit2.Response;
 public class HolidayRepo {
 
     private final String TAG = getClass().getSimpleName();
-    private MutableLiveData<List<HolidayModel>> mutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<List<HolidayModel>> requestHolidays() {
+        final MutableLiveData<List<HolidayModel>> mutableLiveData = new MutableLiveData<>();
 
         ApiInterface apiService =
                 MyApplication.getRetrofitClient().create(ApiInterface.class);
